@@ -1,22 +1,10 @@
 @charset "utf-8";
 /* Untrustworthy CSS Document*/
+/* This file contains custom colors that the terminals uses  */
 
-code-green {
-    color: rgb(138, 226, 52)
-}
+code-green { color: rgb(138, 226, 52) }
 
-red {
-    color: red
-}
-cyan {
-    color: cyan;
-}
-
-
-white {
-    color: white
-}
-
-grey {
-    color: rgb(121, 121, 121);
-}
+red { color: red; }
+cyan { color: cyan; }
+white { color: white; }
+grey { color: rgb(121, 121, 121); }
