@@ -1,13 +1,16 @@
 // Untrustworthy | By Zacky2613
 
 var command_history = []
-echo_arrow_output = false // Defualt
 
-Paragraph_Maker = ( text ) => {
+Paragraph_Maker = ( text, element="p" ) => {
     let paragraph = document.createElement("p");
 
     paragraph.innerHTML = `${text}`;
     document.querySelector(".terminal-output").appendChild(paragraph);
+}
+
+portfilo = () => {
+    Paragraph_Maker()
 }
 
 command_list = ( command ) => {
@@ -20,18 +23,10 @@ command_list = ( command ) => {
 
             for ( index = paragraphs.length - 1; index >= 0; index-- ) {
                 paragraphs[index].parentNode.removeChild(paragraphs[index]);
-            } Paragraph_Maker("<grey>Zacky2613 (c) 2022</grey>")
+            } 
             
             break;
-        
-        case "ls":
-            Paragraph_Maker("(looking 1 folder back)")
-            Paragraph_Maker("")
-            Paragraph_Maker("")
-            Paragraph_Maker("")
-            Paragraph_Maker("")
-            Paragraph_Maker("")
-            Paragraph_Maker("")
+
 
         case "history":
             Paragraph_Maker(`<code-green>Command History:</code-green><br>`)
@@ -39,30 +34,35 @@ command_list = ( command ) => {
             if ( command_history.length === 0 ) {
 
             } else {
-                for ( index = 0 ; index < command_history.length ; index++ ) {
-                    Paragraph_Maker(`<cyan>${index + 1}. ${command_history[index]}</cyan>`)
-                } 
+                for (const [index, element] of command_history.entries()) {
+                    console.log(index, element)
+                    var num_to_string = "" + index
+                    Paragraph_Maker(" ".repeat(5-num_to_string.length) + `<cyan>${index} ${element}</cyan>`)
+                }
             } break;
         
         case "about me":
         case "aboutme":
-            Paragraph_Maker(`<br><cyan>Hi👋, I'm </cyan><code-green>Zacky2613.</code-green><cyan> I.</cyan>`)
-            Paragraph_Maker(`<cyan>I first started programming back in 2020, I first started with batch and a lot has changed since then!</cyan>`)
-            Paragraph_Maker(`<cyan>I'm now a self-taught Python Developer and know many different programming languages.</cyan>`)
-            Paragraph_Maker(`<br><code-green>Social Media:</code-green>`)
-            Paragraph_Maker(`<white>Github: </white><grey>https://github.com/Zacky2613</grey>`)
-            Paragraph_Maker(`<br><br>`)
+        case "cv":
+        case "portfilo":
+            portfilo()
+                                                                                
+        
+        case "help":
+            Paragraph_Maker("")
 
             break;
 
         default:
-            Paragraph_Maker(`<red>Command '${command}' unknown.</red>`);
+            Paragraph_Maker(`<red>'${command}': Command not found.</red>`);
     }
 }
 
 document.querySelector("#terminal-input").addEventListener("keypress", function(event) {
     if ( event.key === "Enter" ) {
         const terminal_text = document.querySelector("#terminal-input").value;
+        if (terminal_text.trim() === "") { return } // If terminal prompt is nothing
+
         var result = terminal_text.trim().split(/\s+/); 
         
         /* 'result' takes the user's input in 'terminal_text' which then does:
@@ -78,13 +78,8 @@ document.querySelector("#terminal-input").addEventListener("keypress", function(
             result.shift();
             result = result.join(" ");
             // ^ Delets the word "echo" from array and joins all the other array elements back into a string
-            if ( echo_arrow_output === false ) {
-                Paragraph_Maker(`<white>${result}</white>`);
-            } else {
-                Paragraph_Maker(`<white>>> ${result}</white>`);
-            }
-        } else if ( result[0].toLowerCase() == "output_arrow" ) {
-            echo_arrow_output = result[1]
+            Paragraph_Maker(`<white>${result}</white>`);
+
         } else {
             command_list(terminal_text);
         }
@@ -98,5 +93,3 @@ document.querySelector("#terminal-input").addEventListener("keypress", function(
         document.querySelector("#terminal-input").value = "";
     }
 });
-
-Paragraph_Maker(`<grey>Zacky2613 (c) 2022</grey><br><br>`)
