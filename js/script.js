@@ -1,16 +1,47 @@
 // Untrustworthy | By Zacky2613
 
+// TODO: Make input more like a terminal
+// TODO: Redo aboutme.
+// TODO: Maybe think of a better name
+// TODO: Make and use more colours in ./css/colours.css
+// TODO: Make it so hitting up-arrow gets most recent command.
+// TODO: Make a "terminal" command that shows how I made it (just pure html, js, and css 💪)
+
 var command_history = []
 
-Paragraph_Maker = ( text, element="p" ) => {
+Paragraph_Maker = ( text, element="p", div_id="") => {
     let paragraph = document.createElement("p");
+
+    if ( element !== "p" ) {
+        paragraph.setAttribute("id", element);
+    }
+
+    if (div_id === "banner") {
+        paragraph.innerHTML = `${text}`;
+        document.querySelector("#terminal-banner").appendChild(paragraph);
+        return;
+    }
 
     paragraph.innerHTML = `${text}`;
     document.querySelector(".terminal-output").appendChild(paragraph);
 }
 
-portfilo = () => {
-    Paragraph_Maker()
+banner = () => {
+    Paragraph_Maker("<white>███████╗ █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗  ██████╗ ██╗██████╗ </white>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<white>╚══███╔╝██╔══██╗██╔════╝██║ ██╔╝╚██╗ ██╔╝╚════██╗██╔════╝███║╚════██╗</white>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<white>  ███╔╝ ███████║██║     █████╔╝  ╚████╔╝  █████╔╝███████╗╚██║ █████╔╝</white>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<white> ███╔╝  ██╔══██║██║     ██╔═██╗   ╚██╔╝  ██╔═══╝ ██╔═══██╗██║ ╚═══██╗</white>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<white>███████╗██║  ██║╚██████╗██║  ██╗   ██║   ███████╗╚██████╔╝██║██████╔╝</white>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<white>╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝╚═════╝ </white><cyan>© 2023<cyan>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<grey>Welcome to my little project humans and webscrapers alike</grey>", element="p", div_id="banner")
+    Paragraph_Maker("<grey>Type <cyan>'help'</cyan> to get a list of commands.</grey>", element="p", div_id="banner")
+    Paragraph_Maker("")
+
+}
+
+aboutme = () => {
+    // Will finish tomorrow, hopefully...
+
 }
 
 command_list = ( command ) => {
@@ -27,7 +58,6 @@ command_list = ( command ) => {
             
             break;
 
-
         case "history":
             Paragraph_Maker(`<code-green>Command History:</code-green><br>`)
             
@@ -35,21 +65,29 @@ command_list = ( command ) => {
 
             } else {
                 for (const [index, element] of command_history.entries()) {
-                    console.log(index, element)
-                    var num_to_string = "" + index
-                    Paragraph_Maker(" ".repeat(5-num_to_string.length) + `<cyan>${index} ${element}</cyan>`)
+                    Paragraph_Maker(`<cyan>${index} ${element}</cyan>`)
                 }
             } break;
         
-        case "about me":
-        case "aboutme":
-        case "cv":
-        case "portfilo":
-            portfilo()
+        case "about":
+            aboutme()
+
+            break;
+        
+        case "banner":
+            banner();
+            break;
                                                                                 
         
         case "help":
-            Paragraph_Maker("")
+            Paragraph_Maker("<cyan>Help Page:</cyan>")
+            Paragraph_Maker("<white>REAL LINUX COMMANDS:</white>")
+            Paragraph_Maker("<white><pre>   echo [words]: Like the actual bash echo</pre></white>")
+            Paragraph_Maker("<white><pre>   history: Shows all command history in that session</pre></white>")
+            Paragraph_Maker("<white><pre>   clear: clear all terminal output</pre></white>")
+            Paragraph_Maker("<white>CUSTOM COMMANDS:</white>")
+            Paragraph_Maker("<white><pre>   about: All about me, just enough info to start stalking me</pre></white>")
+            Paragraph_Maker("<white><pre>   banner: Shows the banner that is displayed when the website is loaded</pre></white>")
 
             break;
 
@@ -74,6 +112,7 @@ document.querySelector("#terminal-input").addEventListener("keypress", function(
         So what the code below does it checks if the first argument is echo. and if that is True.
         Then puts all after echo into a string and prints that. */
 
+
         if ( result[0].toLowerCase() === "echo" ) {
             result.shift();
             result = result.join(" ");
@@ -93,3 +132,5 @@ document.querySelector("#terminal-input").addEventListener("keypress", function(
         document.querySelector("#terminal-input").value = "";
     }
 });
+
+banner();
