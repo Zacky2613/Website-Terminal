@@ -1,16 +1,19 @@
 @charset "utf-8";
 /* Untrustworthy CSS Document*/
 
+/* Google Fonts Fire Code import */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap'); 
+
 body {
     background-color: rgba(0, 0, 0, 0.9);
-    font-family: monospace;
+    font-family: "Fira Code", monospace;
     font-size: 16px;
 }
 
 /* Terminal CSS */
 label[for="terminal-input"] {
     background-color: transparent;
-
+    
     width: 100%;
     height: auto;
     font-size: 18px;
@@ -19,15 +22,29 @@ label[for="terminal-input"] {
     color: white;
 }
 
+/* For the big Zacky2613 in about me */
+#credit-text {
+    white-space: pre;
+    color: white;
+    font-size: 18px;
+    line-height: 0.3;
+    font-family: monospace;
+}
+
 #credits {
     margin-left: 1%;
     color: white;
 }
 
+#terminal-banner {
+    margin-top: 2%;
+    margin-left: 1%;
+}
+
 .terminal-output {
     background-color: transparent;
     height: 99%; width: auto;
-
+    
     margin-left: 1%;
     overflow: scroll;
 }
@@ -37,8 +54,9 @@ label[for="terminal-input"] {
     box-shadow: 0;
     outline: 0;
     
-    font-family: monospace; font-size: 16px;
-
+    font-family: monospace;
+    font-size: 18px;
+    
     color: white;
 
     border: 1px solid white;
@@ -46,6 +64,11 @@ label[for="terminal-input"] {
     border-width: 1px;
     border-radius: 5px;
     border: none;
+}
+
+#copyright-text {
+    color: cyan;
+    font-size: 20px;
 }
 
 /* Scrossbar CSS */
