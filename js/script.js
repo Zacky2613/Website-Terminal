@@ -1,19 +1,13 @@
 // Untrustworthy | By Zacky2613
 
-// TODO: Make input more like a terminal
-// TODO: Redo aboutme.
-// TODO: Maybe think of a better name
-// TODO: Make and use more colours in ./css/colours.css
-// TODO: Make it so hitting up-arrow gets most recent command.
-// TODO: Make a "terminal" command that shows how I made it (just pure html, js, and css 💪)
-
 var command_history = []
+var uparrow_counter = 0
 
-Paragraph_Maker = ( text, element="p", div_id="") => {
+Paragraph_Maker = ( text, element_id="lorem", div_id="", element="p") => {
     let paragraph = document.createElement("p");
 
-    if ( element !== "p" ) {
-        paragraph.setAttribute("id", element);
+    if ( element_id !== "lorem" ) {
+        paragraph.setAttribute("id", element_id);
     }
 
     if (div_id === "banner") {
@@ -27,20 +21,24 @@ Paragraph_Maker = ( text, element="p", div_id="") => {
 }
 
 banner = () => {
-    Paragraph_Maker("<white>███████╗ █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗  ██████╗ ██╗██████╗ </white>", element="credit-text", div_id="banner")
-    Paragraph_Maker("<white>╚══███╔╝██╔══██╗██╔════╝██║ ██╔╝╚██╗ ██╔╝╚════██╗██╔════╝███║╚════██╗</white>", element="credit-text", div_id="banner")
-    Paragraph_Maker("<white>  ███╔╝ ███████║██║     █████╔╝  ╚████╔╝  █████╔╝███████╗╚██║ █████╔╝</white>", element="credit-text", div_id="banner")
-    Paragraph_Maker("<white> ███╔╝  ██╔══██║██║     ██╔═██╗   ╚██╔╝  ██╔═══╝ ██╔═══██╗██║ ╚═══██╗</white>", element="credit-text", div_id="banner")
-    Paragraph_Maker("<white>███████╗██║  ██║╚██████╗██║  ██╗   ██║   ███████╗╚██████╔╝██║██████╔╝</white>", element="credit-text", div_id="banner")
+    Paragraph_Maker("<white>███████╗ █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗  ██████╗ ██╗██████╗ </white>", element_id="credit-text", div_id="banner")
+    Paragraph_Maker("<white>╚══███╔╝██╔══██╗██╔════╝██║ ██╔╝╚██╗ ██╔╝╚════██╗██╔════╝███║╚════██╗</white>", element_id="credit-text", div_id="banner")
+    Paragraph_Maker("<white>  ███╔╝ ███████║██║     █████╔╝  ╚████╔╝  █████╔╝███████╗╚██║ █████╔╝</white>", element_id="credit-text", div_id="banner")
+    Paragraph_Maker("<white> ███╔╝  ██╔══██║██║     ██╔═██╗   ╚██╔╝  ██╔═══╝ ██╔═══██╗██║ ╚═══██╗</white>", element_id="credit-text", div_id="banner")
+    Paragraph_Maker("<white>███████╗██║  ██║╚██████╗██║  ██╗   ██║   ███████╗╚██████╔╝██║██████╔╝</white>", element_id="credit-text", div_id="banner")
     Paragraph_Maker("<white>╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝╚═════╝ </white><cyan>© 2023<cyan>", element="credit-text", div_id="banner")
-    Paragraph_Maker("<grey>Welcome to my little project humans and webscrapers alike</grey>", element="p", div_id="banner")
-    Paragraph_Maker("<grey>Type <cyan>'help'</cyan> to get a list of commands.</grey>", element="p", div_id="banner")
+    Paragraph_Maker("<grey>Welcome to my little project humans and webscrapers alike</grey>", element_id="p", div_id="banner")
+    Paragraph_Maker("<grey>Type <cyan>'help'</cyan> to get a list of commands.</grey>", element_id="p", div_id="banner")
     Paragraph_Maker("")
 
 }
 
 aboutme = () => {
-    // Will finish tomorrow, hopefully...
+    Paragraph_Maker("<code-green>Hello, I'm <cyan>Zacky2613</cyan>👋</code-green>")
+    Paragraph_Maker("<code-green>I'm a 14 year old programmer from Australia and do a wide range of things such as:</code-green>")
+    Paragraph_Maker("<code-green>Using pythons to make cli tools, discord bots, using modules in their non-intended way to make abominations, etc..</code-green>")
+    Paragraph_Maker("<code-green>But I've got more than python skills as you can see write here! (type '<cyan>terminal</cyan>' to learn how I made this</code-green>")
+    Paragraph_Maker("<code-green>If you wanna explore more of me check out my <a href='https://www.github.com/Zacky2613'>github!</a></code-green>")
 
 }
 
@@ -56,6 +54,7 @@ command_list = ( command ) => {
                 paragraphs[index].parentNode.removeChild(paragraphs[index]);
             } 
             
+            banner();
             break;
 
         case "history":
@@ -81,22 +80,45 @@ command_list = ( command ) => {
         
         case "help":
             Paragraph_Maker("<cyan>Help Page:</cyan>")
+            Paragraph_Maker("<white>CUSTOM COMMANDS:</white>")
+            Paragraph_Maker("<white><pre>   about: All about me, just enough info to start stalking me</pre></white>")
+            Paragraph_Maker("<white><pre>   banner: Shows the banner that is displayed when the website is loaded</pre></white>")
+            Paragraph_Maker("<white><pre>   terminal: Shows how this terminal was made and what inspired it.</pre></white>")
             Paragraph_Maker("<white>REAL LINUX COMMANDS:</white>")
             Paragraph_Maker("<white><pre>   echo [words]: Like the actual bash echo</pre></white>")
             Paragraph_Maker("<white><pre>   history: Shows all command history in that session</pre></white>")
             Paragraph_Maker("<white><pre>   clear: clear all terminal output</pre></white>")
-            Paragraph_Maker("<white>CUSTOM COMMANDS:</white>")
-            Paragraph_Maker("<white><pre>   about: All about me, just enough info to start stalking me</pre></white>")
-            Paragraph_Maker("<white><pre>   banner: Shows the banner that is displayed when the website is loaded</pre></white>")
 
             break;
+        
+        case "terminal":
+            Paragraph_Maker("<white>How I made this online terminal:</white>")
+            Paragraph_Maker("<pre> </pre>")
+            Paragraph_Maker("<code-green>This is an open-source project which can be found <a href='https://www.github.com/Zacky2613/Untrustworthy'>here.</a></code-green>")
+            Paragraph_Maker("<code-green>All this website using is completely <cyan>static and vanilla Javascript, html, and css.</cyan> Nothing more.</code-green>")
+            Paragraph_Maker("<code-green>I was orginially inspried by this <a href='https://www.youtube.com/watch?v=KtYby2QN0kQ'>ForrestKnight Video</a> to make this website.</code-green>")
+            Paragraph_Maker("<code-green>I started this project half way through 2022 but has been on the backburner until recently when I decided to pick it back up again.</code-green>")
+            Paragraph_Maker("<code-green>This was all made from scratch, everything is by me.</code-green>")
+
+            break;
+
 
         default:
             Paragraph_Maker(`<red>'${command}': Command not found.</red>`);
     }
 }
 
-document.querySelector("#terminal-input").addEventListener("keypress", function(event) {
+document.querySelector("#terminal-input").addEventListener("keydown", function(event) {
+    if ( event.key === "ArrowUp" ) {
+        // Checking that command history has existing history.
+        if ( command_history.length !== 0 ) {
+            // If uparrow_counter goes over the length of command history it results in "undefined"
+            if (uparrow_counter === command_history.length) {return};
+            document.querySelector("#terminal-input").value = command_history[command_history.length-(1+uparrow_counter)];
+            uparrow_counter += 1;
+        }
+    }
+
     if ( event.key === "Enter" ) {
         const terminal_text = document.querySelector("#terminal-input").value;
         if (terminal_text.trim() === "") { return } // If terminal prompt is nothing
@@ -123,12 +145,14 @@ document.querySelector("#terminal-input").addEventListener("keypress", function(
             command_list(terminal_text);
         }
 
+        // make_terminal_input()
         command_history.push(terminal_text) 
         // ^ Puts the most recent command in an array used for command history.
 
         var Command_history = document.querySelector(".terminal-output");
         Command_history.scrollTop = Command_history.scrollHeight;
 
+        
         document.querySelector("#terminal-input").value = "";
     }
 });
