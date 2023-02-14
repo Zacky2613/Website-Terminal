@@ -31,6 +31,10 @@ label[for="terminal-input"] {
     font-family: monospace;
 }
 
+a {
+    color: rgb(94, 150, 223);
+}
+
 #credits {
     margin-left: 1%;
     color: white;
@@ -53,6 +57,7 @@ label[for="terminal-input"] {
     background-color: transparent;
     box-shadow: 0;
     outline: 0;
+    width: 60%;
     
     font-family: monospace;
     font-size: 18px;
