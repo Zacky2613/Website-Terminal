@@ -1,6 +1,7 @@
 # Website-Terminal
 
 A Linux based website terminal only using static & vanilla Javascript, HTML, and CSS.
+Github Deployment: https://zacky2613.github.io/Website-Terminal
 
 **UNDERDEVELOPMENT: THERE IS STILL MORE TO BE ADDED AND THIS PROJECT IS NOT IN A FINISHED STATE**
 
