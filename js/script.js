@@ -3,7 +3,7 @@
 var command_history = []
 var uparrow_counter = 0
 
-Paragraph_Maker = ( text, element_id="lorem", div_id="", element="p") => {
+Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
     let paragraph = document.createElement("p");
 
     if ( element_id !== "lorem" ) {
@@ -56,6 +56,9 @@ command_list = ( command ) => {
             
             banner();
             break;
+
+        case "ls":
+            Paragraph_Maker("<bold-blue><b> README.md flag.txt <b><bold-blue>")
 
         case "history":
             Paragraph_Maker(`<code-green>Command History:</code-green><br>`)
@@ -157,4 +160,5 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
     }
 });
 
+console.log("Hello, if you want a hint for the password. Think of capture the flags.")
 banner();
