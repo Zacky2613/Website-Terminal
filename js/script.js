@@ -3,6 +3,10 @@
 var command_history = []
 var uparrow_counter = 0
 
+var flag_text = "SEkgbTBtIEkgZmlndTNlZCAwdXQgdGgzIHBhNTV3MHJkIQ=="
+// var flag_text = "HI m0m I figu3ed 0ut th3 pa55w0rd!"
+var readme_text = "lol"
+
 Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
     let paragraph = document.createElement("p");
 
@@ -60,6 +64,8 @@ command_list = ( command ) => {
         case "ls":
             Paragraph_Maker("<bold-blue><b> README.md flag.txt <b><bold-blue>")
 
+            break;
+
         case "history":
             Paragraph_Maker(`<code-green>Command History:</code-green><br>`)
             
@@ -74,12 +80,7 @@ command_list = ( command ) => {
         case "about":
             aboutme()
 
-            break;
-        
-        case "banner":
-            banner();
-            break;
-                                                                                
+            break;                                                         
         
         case "help":
             Paragraph_Maker("<cyan>Help Page:</cyan>")
@@ -111,12 +112,14 @@ command_list = ( command ) => {
     }
 }
 
+// Function to handle using uparrow to use previous commands
 document.querySelector("#terminal-input").addEventListener("keydown", function(event) {
     if ( event.key === "ArrowUp" ) {
         // Checking that command history has existing history.
         if ( command_history.length !== 0 ) {
             // If uparrow_counter goes over the length of command history it results in "undefined"
             if (uparrow_counter === command_history.length) {return};
+
             document.querySelector("#terminal-input").value = command_history[command_history.length-(1+uparrow_counter)];
             uparrow_counter += 1;
         }
@@ -142,7 +145,26 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
             result.shift();
             result = result.join(" ");
             // ^ Delets the word "echo" from array and joins all the other array elements back into a string
+            // This code is reused in this if statement block.
             Paragraph_Maker(`<white>${result}</white>`);
+
+        } else if ( result[0].toLowerCase() === "password" ) {
+            result.shift();
+            result = result.join(" ");
+
+            if ( result === atob(flag_text) ) {
+                Paragraph_Maker("<bold-blue>You figured out my password! Congrats there is 0 reward</bold-blue>")
+            } else {
+                Paragraph_Maker("<red>Wrong password. Maybe try to find a flag?</red>")
+            }
+
+        } else if ( result[0].toLowerCase() === "cat" ) {
+            result.shift();
+            result = result.join(" ");
+
+            if ( result === "flag.txt" ) {
+                Paragraph_Maker(`<white>${atob(flag_text)}</white>`)
+            }
 
         } else {
             command_list(terminal_text);
