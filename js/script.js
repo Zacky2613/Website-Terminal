@@ -1,10 +1,9 @@
-// Untrustworthy | By Zacky2613
+// Website-Terminal | By Zacky2613
 
 var command_history = []
 var uparrow_counter = 0
 
 var flag_text = "SEkgbTBtIEkgZmlndTNlZCAwdXQgdGgzIHBhNTV3MHJkIQ=="
-// var flag_text = "HI m0m I figu3ed 0ut th3 pa55w0rd!"
 var readme_text = "lol"
 
 Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
@@ -86,11 +85,13 @@ command_list = ( command ) => {
             Paragraph_Maker("<cyan>Help Page:</cyan>")
             Paragraph_Maker("<white>CUSTOM COMMANDS:</white>")
             Paragraph_Maker("<white><pre>   about: All about me, just enough info to start stalking me</pre></white>")
-            Paragraph_Maker("<white><pre>   banner: Shows the banner that is displayed when the website is loaded</pre></white>")
             Paragraph_Maker("<white><pre>   terminal: Shows how this terminal was made and what inspired it.</pre></white>")
+            Paragraph_Maker("<white><pre>   password [phrase]: Maybe try looking around with the commands?</pre></white>")
             Paragraph_Maker("<white>REAL LINUX COMMANDS:</white>")
             Paragraph_Maker("<white><pre>   echo [words]: Like the actual bash echo</pre></white>")
             Paragraph_Maker("<white><pre>   history: Shows all command history in that session</pre></white>")
+            Paragraph_Maker("<white><pre>   cat: view contents of a file.</pre></white>")
+            Paragraph_Maker("<white><pre>   ls: Show all files in current directory</pre></white>")
             Paragraph_Maker("<white><pre>   clear: clear all terminal output</pre></white>")
 
             break;
