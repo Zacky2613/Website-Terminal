@@ -3,7 +3,7 @@
 var command_history = []
 var uparrow_counter = 0
 
-var flag_text = "SEkgbTBtIEkgZmlndTNlZCAwdXQgdGgzIHBhNTV3MHJkIQ=="
+var flag_text = "SEkgbTBtIEkgZmlndTNlZCAwdXQgdGgzIHBhNTV3MHJkIQ==" // Don't cheat.
 var readme_text = "lol"
 
 Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
@@ -165,6 +165,8 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
 
             if ( result === "flag.txt" ) {
                 Paragraph_Maker(`<white>${atob(flag_text)}</white>`)
+            } else if ( result === "readme.md" ) {
+                Paragraph_Maker(`<white>${readme_text}</white>`)
             }
 
         } else {
