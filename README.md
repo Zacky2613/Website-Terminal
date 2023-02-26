@@ -1,14 +1,13 @@
 # Website-Terminal
 
 A Linux based website terminal only using static & vanilla Javascript, HTML, and CSS.
-Github Deployment: https://zacky2613.github.io/Website-Terminal
 
-**UNDERDEVELOPMENT: THERE IS STILL MORE TO BE ADDED AND THIS PROJECT IS NOT IN A FINISHED STATE**
+Github Deployment: https://zacky2613.github.io/Website-Terminal
 
 ## Features
 
-- Custom commands (like help, about, terminal)
-- Linux imported commands (echo, history)
+- Custom commands (like help, about, terminal, password)
+- Linux imported commands (echo, history, ls, cat)
 - Press Arrowup to use previous command like an actual terminal
 
 ## Inspriation
