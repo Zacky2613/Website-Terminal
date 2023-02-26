@@ -3,8 +3,13 @@
 var command_history = []
 var uparrow_counter = 0
 
+// Cat command varibles:
 var flag_text = "SEkgbTBtIEkgZmlndTNlZCAwdXQgdGgzIHBhNTV3MHJkIQ==" // Don't cheat.
-var readme_text = "lol"
+var readme_text = "# Hello user!"
+
+// Easter eggs varibles:
+var password_unlocked = false
+
 
 Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
     let paragraph = document.createElement("p");
@@ -104,6 +109,20 @@ command_list = ( command ) => {
             Paragraph_Maker("<code-green>I was orginially inspried by this <a href='https://www.youtube.com/watch?v=KtYby2QN0kQ'>ForrestKnight Video</a> to make this website.</code-green>")
             Paragraph_Maker("<code-green>I started this project half way through 2022 but has been on the backburner until recently when I decided to pick it back up again.</code-green>")
             Paragraph_Maker("<code-green>This was all made from scratch, everything is by me.</code-green>")
+            
+            break;
+            
+            case "xss":
+                if ( password_unlocked === true ) {
+                    Paragraph_Maker("<cyan>This project is vurnable to xss</cyan>")
+                    Paragraph_Maker("<pre> </pre>")
+                    Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it.</cyan>")
+                    Paragraph_Maker("<cyan>You know what they say? Can't beat em join em. </cyan><red>It's not a bug, it's a feature</red>")
+                    Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it.</cyan>")
+                } else {
+                    Paragraph_Maker("<red>You lack privilege. (this relates with the 'password' command)<red>")
+                    
+                }
 
             break;
 
@@ -127,6 +146,14 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
     }
 
     if ( event.key === "Enter" ) {
+        var paragraphs = document.getElementsByTagName("p"), index;
+
+        for ( index = paragraphs.length - 1; index >= 0; index-- ) {
+            paragraphs[index].parentNode.removeChild(paragraphs[index]);
+        } 
+        
+        banner();
+        
         const terminal_text = document.querySelector("#terminal-input").value;
         if (terminal_text.trim() === "") { return } // If terminal prompt is nothing
 
@@ -146,7 +173,7 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
             result.shift();
             result = result.join(" ");
             // ^ Delets the word "echo" from array and joins all the other array elements back into a string
-            // This code is reused in this if statement block.
+            // This code is reused in this section.
             Paragraph_Maker(`<white>${result}</white>`);
 
         } else if ( result[0].toLowerCase() === "password" ) {
@@ -154,9 +181,10 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
             result = result.join(" ");
 
             if ( result === atob(flag_text) ) {
-                Paragraph_Maker("<bold-blue>You figured out my password! Congrats there is 0 reward</bold-blue>")
+                Paragraph_Maker("<bold-blue>xss - How to break the website.</bold-blue>")
+                password_unlocked = true
             } else {
-                Paragraph_Maker("<red>Wrong password. Maybe try to find a flag?</red>")
+                Paragraph_Maker("<red>Wrong password. Maybe try to explore around a bit more?</red>")
             }
 
         } else if ( result[0].toLowerCase() === "cat" ) {
@@ -165,15 +193,18 @@ document.querySelector("#terminal-input").addEventListener("keydown", function(e
 
             if ( result === "flag.txt" ) {
                 Paragraph_Maker(`<white>${atob(flag_text)}</white>`)
-            } else if ( result === "readme.md" ) {
+            } 
+            else if ( result === "readme.md" ) {
                 Paragraph_Maker(`<white>${readme_text}</white>`)
+            } 
+            else {
+                Paragraph_Maker(`<red>File '${result}' is unknown.</red>`)
             }
 
         } else {
             command_list(terminal_text);
         }
 
-        // make_terminal_input()
         command_history.push(terminal_text) 
         // ^ Puts the most recent command in an array used for command history.
 
