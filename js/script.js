@@ -8,10 +8,10 @@ var flag_text = "SEkgbTBtIEkgZmlndTNlZCAwdXQgdGgzIHBhNTV3MHJkIQ==" // Don't chea
 var readme_text = "# Hello user!"
 
 // Easter eggs varibles:
-var password_unlocked = false
+var password_unlocked = true
 
 
-Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
+Paragraph_Maker = ( text, element_id="lorem", div_id="", text_type=false) => {
     let paragraph = document.createElement("p");
 
     if ( element_id !== "lorem" ) {
@@ -24,7 +24,12 @@ Paragraph_Maker = ( text, element_id="lorem", div_id="") => {
         return;
     }
 
-    paragraph.innerHTML = `${text}`;
+    if ( text_type === false ){
+        paragraph.innerHTML = `${text}`;
+    } else {
+        paragraph.innerText = `${text}`;
+
+    }
     document.querySelector(".terminal-output").appendChild(paragraph);
 }
 
@@ -38,7 +43,6 @@ banner = () => {
     Paragraph_Maker("<grey>Welcome to my little project humans and webscrapers alike</grey>", element_id="p", div_id="banner")
     Paragraph_Maker("<grey>Type <cyan>'help'</cyan> to get a list of commands.</grey>", element_id="p", div_id="banner")
     Paragraph_Maker("")
-
 }
 
 aboutme = () => {
@@ -112,17 +116,19 @@ command_list = ( command ) => {
             
             break;
             
-            case "xss":
-                if ( password_unlocked === true ) {
-                    Paragraph_Maker("<cyan>This project is vurnable to xss</cyan>")
-                    Paragraph_Maker("<pre> </pre>")
-                    Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it.</cyan>")
-                    Paragraph_Maker("<cyan>You know what they say? Can't beat em join em. </cyan><red>It's not a bug, it's a feature</red>")
-                    Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it.</cyan>")
-                } else {
-                    Paragraph_Maker("<red>You lack privilege. (this relates with the 'password' command)<red>")
-                    
-                }
+        case "xss":
+            if ( password_unlocked === true ) {
+                Paragraph_Maker("<cyan>This project is vurnable to xss injections.</cyan>")
+                Paragraph_Maker("<pre> </pre>")
+                Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it.</cyan>")
+                Paragraph_Maker("<cyan>You know what they say? Can't beat em join em. </cyan><red>It's not a bug, it's a feature</red>")
+                Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it. So here's some ones to toy around with!</cyan>")
+                Paragraph_Maker("<pre> </pre>")
+                Paragraph_Maker("Rainbow world: <style>* { background: #FF0000; animation: shiftcolor 2s ease infinite }@keyframes shiftcolor { 0% { background #FF0000; } 50% { background: #00FF00; } 100% { background: #0000FF; }}</style>", element_id="lorem", div_id="", text_type=true)
+
+            } else {
+                Paragraph_Maker("<red>You lack privilege. (this relates with the 'password' command)<red>")
+            }
 
             break;
 
