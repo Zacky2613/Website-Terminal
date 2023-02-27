@@ -35,6 +35,10 @@ a {
     color: rgb(94, 150, 223);
 }
 
+p {
+    color: white;
+}
+
 #credits {
     margin-left: 1%;
     color: white;
