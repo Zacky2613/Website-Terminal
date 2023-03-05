@@ -81,7 +81,7 @@ command_list = ( command ) => {
 
             } else {
                 for (const [index, element] of command_history.entries()) {
-                    Paragraph_Maker(`<cyan>${index} ${element}</cyan>`)
+                    Paragraph_Maker(`<cyan>${index}. ${element}</cyan>`)
                 }
             } break;
         
