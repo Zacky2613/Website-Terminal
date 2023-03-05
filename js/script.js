@@ -120,9 +120,9 @@ command_list = ( command ) => {
             if ( password_unlocked === true ) {
                 Paragraph_Maker("<cyan>This project is vurnable to xss injections.</cyan>")
                 Paragraph_Maker("<pre> </pre>")
-                Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it.</cyan>")
-                Paragraph_Maker("<cyan>You know what they say? Can't beat em join em. </cyan><red>It's not a bug, it's a feature</red>")
                 Paragraph_Maker("<cyan>Because of how this project is made I can't really fix it. So here's some ones to toy around with!</cyan>")
+                Paragraph_Maker("<cyan>You know what they say? Can't beat em join em. </cyan><red>It's not a bug, it's a feature</red>")
+                Paragraph_Maker("<cyan>(P.S: type 'clear' to get rid of the xss injection</cyan>")
                 Paragraph_Maker("<pre> </pre>")
                 Paragraph_Maker("Rainbow world: <style>* { background: #FF0000; animation: shiftcolor 2s ease infinite }@keyframes shiftcolor { 0% { background #FF0000; } 50% { background: #00FF00; } 100% { background: #0000FF; }}</style>", element_id="lorem", div_id="", text_type=true)
 
